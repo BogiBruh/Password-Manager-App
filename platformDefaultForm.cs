@@ -14,12 +14,28 @@ namespace password_manager
     public partial class platformDefaultForm : Form
     {
         public int passVisible = 1; // 1 - invisible, 0 - visible
-        public string passwordString = "";
+        public string passwordString = "Placeholder Password Text.";
         //visible and invisible generated at the start cause Image.FromFile call generates a new image in memory every time you click to hide
         //or show the password. thats the only button that consistently changes its look when pressed so its the only one so far ive
         //had to do like this
         Image visible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "visibility.png")); 
         Image invisible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "invisible.png"));
+
+        public void customizeToPlatform(string platformNameStr)
+        {
+            platformName.Text = platformNameStr;
+
+            if (File.Exists(Path.Combine(Application.StartupPath, "img", "logos", platformNameStr + ".png")))
+            {
+                logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "logos", platformNameStr + ".png"));
+            }
+            else
+            {
+                logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "photo.png"));
+            }
+
+            //Console.WriteLine(Convert.ToString(Path.Combine(Application.StartupPath, "img", "logos", logoSrc + ".png")));
+        }
 
         public platformDefaultForm()
         {
@@ -30,9 +46,8 @@ namespace password_manager
         {
             //INITIALIZING POSITIONS OF ITEMS
             logoBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "photo.png"));
+            
             logoBox.Left = (this.ClientSize.Width / 2) - (logoBox.Size.Width / 2);
-
             showHidePass.SizeMode = PictureBoxSizeMode.StretchImage;
             showHidePass.Image = visible;
 
@@ -41,27 +56,19 @@ namespace password_manager
 
             platformName.Left = (this.ClientSize.Width / 2) - (platformName.Size.Width / 2);
             //INITIALIZING END, VARIABLE DEFINITIONSx
-            passwordField.Text = "Placeholder Password Text.";
+            passwordField.Text = passwordString;
         }
 
         private void generateBtn_Click(object sender, EventArgs e)
         {
-            passwordField.Text = "";
+            generateBtn.Enabled = false;
+            label1.Visible = true;
+            confirmBtn.Visible = true;
+            confirmBtn.Enabled = false;
+            denyBtn.Visible = true;
+            denyBtn.Enabled = false;
 
-            passwordString = PasswordGeneration.generateAPassword();
-            switch (passVisible)
-            {
-                case 0:
-                    passwordField.Text = passwordString;
-                    break;
-                case 1:
-                    for (int i = 0; i < passwordString.Length; i++)
-                    {
-                        passwordField.Text += "*";
-                    }
-                    break;
-                default: break;
-            }
+            timerGnerate.Start();
         }
 
         private void copyPassword_Click(object sender, EventArgs e)
@@ -84,6 +91,51 @@ namespace password_manager
                     passwordField.Text = "";
                     showHidePass.Image = visible;
 
+                    for (int i = 0; i < passwordString.Length; i++)
+                    {
+                        passwordField.Text += "*";
+                    }
+                    break;
+                default: break;
+            }
+        }
+
+        private void timerGnerate_Tick(object sender, EventArgs e)
+        {
+            confirmBtn.Enabled = true;
+            denyBtn.Enabled = true;
+
+            timerGnerate.Stop();
+        }
+
+        private void denyBtn_Click(object sender, EventArgs e)
+        {
+            generateBtn.Enabled = true;
+            label1.Visible = false;
+            confirmBtn.Visible = false;
+            confirmBtn.Enabled = false;
+            denyBtn.Visible = false;
+            denyBtn.Enabled = false;
+        }
+
+        private void confirmBtn_Click(object sender, EventArgs e)
+        {
+            generateBtn.Enabled = true;
+            label1.Visible = false;
+            confirmBtn.Visible = false;
+            confirmBtn.Enabled = false;
+            denyBtn.Visible = false;
+            denyBtn.Enabled = false;
+
+            passwordField.Text = "";
+
+            passwordString = PasswordGeneration.generateAPassword();
+            switch (passVisible)
+            {
+                case 0:
+                    passwordField.Text = passwordString;
+                    break;
+                case 1:
                     for (int i = 0; i < passwordString.Length; i++)
                     {
                         passwordField.Text += "*";

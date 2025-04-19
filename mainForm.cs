@@ -29,15 +29,11 @@ namespace password_manager
             panelPasswordForm.Controls.Add(form2); //drawing the form in the main form
             form2.Show();
 
-            buttonList.Add(buttonGenerator.generateAButton("Add a new profile"));
+            buttonList.Add(buttonGenerator.generateAButton("Add a new profile", this));
 
-            buttonList.Add(buttonGenerator.generateAButton("Add a new profile2")); // | testing
-                                                                                   // V
-            buttonList.Add(buttonGenerator.generateAButton("Add a new profile3"));
-
-            buttonList.Add(buttonGenerator.generateAButton("Add a new profile4"));
-
-            buttonList.Add(buttonGenerator.generateAButton("Add a new profile5"));
+            buttonList.Add(buttonGenerator.generateAButton("amazon", this));
+            buttonList.Add(buttonGenerator.generateAButton("discord", this));
+            buttonList.Add(buttonGenerator.generateAButton("spotify", this));
 
             for (int i = buttonList.Count - 1; i >= 0; i--)
             {
@@ -47,5 +43,16 @@ namespace password_manager
 
         }
 
+        public void draw(string platformName)
+        {
+            platformDefaultForm formTest = new platformDefaultForm();
+            panelPasswordForm.Controls.Clear();
+
+            formTest.customizeToPlatform(platformName);
+
+            formTest.TopLevel = false;
+            panelPasswordForm.Controls.Add(formTest);
+            formTest.Show();
+        }
     }
 }

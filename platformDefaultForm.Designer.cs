@@ -28,12 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.logoBox = new System.Windows.Forms.PictureBox();
             this.passwordField = new System.Windows.Forms.TextBox();
             this.copyPassword = new System.Windows.Forms.PictureBox();
             this.showHidePass = new System.Windows.Forms.PictureBox();
             this.generateBtn = new System.Windows.Forms.Button();
             this.platformName = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.confirmBtn = new System.Windows.Forms.Button();
+            this.denyBtn = new System.Windows.Forms.Button();
+            this.timerGnerate = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.copyPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.showHidePass)).BeginInit();
@@ -50,7 +55,7 @@
             // passwordField
             // 
             this.passwordField.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordField.Location = new System.Drawing.Point(74, 282);
+            this.passwordField.Location = new System.Drawing.Point(76, 246);
             this.passwordField.Name = "passwordField";
             this.passwordField.ReadOnly = true;
             this.passwordField.Size = new System.Drawing.Size(394, 31);
@@ -60,7 +65,7 @@
             // copyPassword
             // 
             this.copyPassword.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.copyPassword.Location = new System.Drawing.Point(527, 282);
+            this.copyPassword.Location = new System.Drawing.Point(529, 246);
             this.copyPassword.Name = "copyPassword";
             this.copyPassword.Size = new System.Drawing.Size(36, 33);
             this.copyPassword.TabIndex = 2;
@@ -70,7 +75,7 @@
             // showHidePass
             // 
             this.showHidePass.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.showHidePass.Location = new System.Drawing.Point(602, 283);
+            this.showHidePass.Location = new System.Drawing.Point(604, 247);
             this.showHidePass.Name = "showHidePass";
             this.showHidePass.Size = new System.Drawing.Size(37, 32);
             this.showHidePass.TabIndex = 3;
@@ -79,13 +84,14 @@
             // 
             // generateBtn
             // 
+            this.generateBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.generateBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generateBtn.Location = new System.Drawing.Point(172, 352);
+            this.generateBtn.Location = new System.Drawing.Point(174, 296);
             this.generateBtn.Name = "generateBtn";
             this.generateBtn.Size = new System.Drawing.Size(391, 86);
             this.generateBtn.TabIndex = 4;
             this.generateBtn.Text = "Generate a new password";
-            this.generateBtn.UseVisualStyleBackColor = true;
+            this.generateBtn.UseVisualStyleBackColor = false;
             this.generateBtn.Click += new System.EventHandler(this.generateBtn_Click);
             // 
             // platformName
@@ -98,11 +104,56 @@
             this.platformName.TabIndex = 5;
             this.platformName.Text = "Placeholder";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(116, 397);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(477, 36);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "                    Are you sure you want to change your password?\r\nThis action i" +
+    "s permanent and you cannot get the current password back\r\n";
+            this.label1.Visible = false;
+            // 
+            // confirmBtn
+            // 
+            this.confirmBtn.BackColor = System.Drawing.Color.Red;
+            this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmBtn.Location = new System.Drawing.Point(207, 442);
+            this.confirmBtn.Name = "confirmBtn";
+            this.confirmBtn.Size = new System.Drawing.Size(50, 50);
+            this.confirmBtn.TabIndex = 7;
+            this.confirmBtn.Text = "YES";
+            this.confirmBtn.UseVisualStyleBackColor = false;
+            this.confirmBtn.Visible = false;
+            this.confirmBtn.Click += new System.EventHandler(this.confirmBtn_Click);
+            // 
+            // denyBtn
+            // 
+            this.denyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.denyBtn.Location = new System.Drawing.Point(436, 442);
+            this.denyBtn.Name = "denyBtn";
+            this.denyBtn.Size = new System.Drawing.Size(50, 50);
+            this.denyBtn.TabIndex = 8;
+            this.denyBtn.Text = "No";
+            this.denyBtn.UseVisualStyleBackColor = true;
+            this.denyBtn.Visible = false;
+            this.denyBtn.Click += new System.EventHandler(this.denyBtn_Click);
+            // 
+            // timerGnerate
+            // 
+            this.timerGnerate.Interval = 5000;
+            this.timerGnerate.Tick += new System.EventHandler(this.timerGnerate_Tick);
+            // 
             // platformDefaultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(712, 540);
+            this.Controls.Add(this.denyBtn);
+            this.Controls.Add(this.confirmBtn);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.platformName);
             this.Controls.Add(this.generateBtn);
             this.Controls.Add(this.showHidePass);
@@ -129,5 +180,9 @@
         private System.Windows.Forms.PictureBox showHidePass;
         private System.Windows.Forms.Button generateBtn;
         private System.Windows.Forms.Label platformName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button confirmBtn;
+        private System.Windows.Forms.Button denyBtn;
+        private System.Windows.Forms.Timer timerGnerate;
     }
 }
