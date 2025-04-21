@@ -8,7 +8,7 @@ import time
 def scrapeLogo(inputString):
     print("herher")
     webDriving = webdriver.Chrome()
-    searchString = "https://duckduckgo.com/?q=" + inputString + "-logo-png"
+    searchString = "https://duckduckgo.com/?q=" + inputString + "+logo+png"
     webDriving.get(searchString)
 
     imgLink = None

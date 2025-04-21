@@ -12,7 +12,7 @@ namespace password_manager
         {
             string passwordString = "";
             int passLenght = 16;
-            const string charArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"; //base64 *should* work on most sites?
+            const string charArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#"; //base64 *should* work on most sites?
             Random rng = new Random();
 
             for(int i = 0; i < passLenght; i++)
