@@ -15,14 +15,17 @@ namespace password_manager
     {
         public int passVisible = 1; // 1 - invisible, 0 - visible
         public string passwordString = "Placeholder Password Text.";
-        //visible and invisible generated at the start cause Image.FromFile call generates a new image in memory every time you click to hide
-        //or show the password. thats the only button that consistently changes its look when pressed so its the only one so far ive
-        //had to do like this
-        Image visible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "visibility.png")); 
-        Image invisible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "invisible.png"));
+        /*visible and invisible generated at the start cause Image.FromFile call generates a new image in memory every time you click to hide
+         *or show the password. thats the only button that consistently changes its look when pressed so its the only one so far ive
+         *had to do like this
+         */
+        readonly Image visible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "visibility.png")); 
+        readonly Image invisible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "invisible.png"));
+        //readonly to stop visual studio from complaining - how can an image not be readonly!?
 
         public void customizeToPlatform(string platformNameStr)
         {
+            //instead of having a default image and "placeholder" as platformName.Text, show whats actually supposed to be there
             platformName.Text = platformNameStr;
 
             if (File.Exists(Path.Combine(Application.StartupPath, "img", "logos", platformNameStr + ".png")))
@@ -33,8 +36,6 @@ namespace password_manager
             {
                 logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "photo.png"));
             }
-
-            //Console.WriteLine(Convert.ToString(Path.Combine(Application.StartupPath, "img", "logos", logoSrc + ".png")));
         }
 
         public platformDefaultForm()
@@ -55,7 +56,13 @@ namespace password_manager
             copyPassword.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "copy-link.png"));
 
             platformName.Left = (this.ClientSize.Width / 2) - (platformName.Size.Width / 2);
+            if(platformName.Text == "Placeholder")
+            {
+                logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "photo.png"));
+            }
             //INITIALIZING END, VARIABLE DEFINITIONSx
+
+
             passwordField.Text = passwordString;
         }
 
@@ -73,7 +80,7 @@ namespace password_manager
 
         private void copyPassword_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(passwordField.Text);
+            Clipboard.SetText(passwordField.Text); //i never thought it was that easy
         }
 
         private void showHidePass_Click(object sender, EventArgs e)
@@ -143,6 +150,13 @@ namespace password_manager
                     break;
                 default: break;
             }
+        }
+
+        public void memCleanup()
+        {
+            logoBox.Image.Dispose();
+            logoBox.Image = null;
+            logoBox.Dispose();
         }
     }
 }

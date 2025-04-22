@@ -18,7 +18,11 @@ namespace password_manager
 
             if(btnText != "Add a new profile")
             {
-                buttonga.Click += (sender, e) => formWindow.draw(btnText);
+                buttonga.Click += (sender, e) => formWindow.draw(btnText, "platform");
+            }
+            else
+            {
+                buttonga.Click += (sender, e) => formWindow.addNew();
             }
 
             return buttonga;
