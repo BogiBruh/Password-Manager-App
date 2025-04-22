@@ -13,6 +13,7 @@ namespace password_manager
     public partial class addNewProfile : Form
     {
         mainForm MainForm = null;
+        List<platform> platforms = new List<platform>();
         public addNewProfile()
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace password_manager
         private void finalizeInput_Click(object sender, EventArgs e)
         {
             string platformName = textBox1.Text;
+            platform platformToAdd = new platform(platformName, "");
             loadingLabel.Text = $"Loading {platformName}'s logo, please wait...";
             loadingLabel.Refresh(); //forcing a refresh before a heavy function call should be no problem(clueless)
             loadingLabel.Left = this.Width / 2 - loadingLabel.Width / 2;
@@ -43,12 +45,13 @@ namespace password_manager
             loadingLabel.Text = "Loading the pasword window, please wait...";
             loadingLabel.Refresh();
             MainForm.draw(platformName, "platform");
-            
+            platforms.Add(platformToAdd);
         }
 
-        public void passMainFormReference(mainForm formPassed)
+        public void passMainFormReference(mainForm formPassed, List<platform> platformList)
         {
             MainForm = formPassed;
+            platforms = platformList;
         }
     }
 }

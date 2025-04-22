@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using OpenQA.Selenium.DevTools.V133.Profiler;
 
 namespace password_manager
 {
@@ -22,15 +23,16 @@ namespace password_manager
         readonly Image visible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "visibility.png")); 
         readonly Image invisible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "invisible.png"));
         //readonly to stop visual studio from complaining - how can an image not be readonly!?
+        platform platform = new platform(null, null);
 
-        public void customizeToPlatform(string platformNameStr)
+        public void customizeToPlatform(platform platform)
         {
             //instead of having a default image and "placeholder" as platformName.Text, show whats actually supposed to be there
-            platformName.Text = platformNameStr;
+            platformName.Text = platform.platformName;
 
-            if (File.Exists(Path.Combine(Application.StartupPath, "img", "logos", platformNameStr + ".png")))
+            if (File.Exists(Path.Combine(Application.StartupPath, "img", "logos", platform.platformName + ".png")))
             {
-                logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "logos", platformNameStr + ".png"));
+                logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "logos", platform.platformName + ".png"));
             }
             else
             {
@@ -80,7 +82,7 @@ namespace password_manager
 
         private void copyPassword_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(passwordField.Text); //i never thought it was that easy
+            Clipboard.SetText(passwordString); //i never thought it was that easy
         }
 
         private void showHidePass_Click(object sender, EventArgs e)
@@ -137,6 +139,7 @@ namespace password_manager
             passwordField.Text = "";
 
             passwordString = PasswordGeneration.generateAPassword();
+            platform.setPassword(passwordString);
             switch (passVisible)
             {
                 case 0:
@@ -157,6 +160,11 @@ namespace password_manager
             logoBox.Image.Dispose();
             logoBox.Image = null;
             logoBox.Dispose();
+        }
+
+        public void passProfileObj(platform platform)
+        {
+            this.platform = platform;
         }
     }
 }

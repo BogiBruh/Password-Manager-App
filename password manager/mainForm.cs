@@ -8,13 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//GRAH - NAPRAVI LEPO PLATFORM KLASU!!!
 
 namespace password_manager
 {
     public partial class mainForm : Form
     {
         public List<Button> buttonList = new List<Button>();
-     
+
+        public List<platform> platformList = new List<platform>();
         public mainForm()
         {
             InitializeComponent();
@@ -73,7 +75,7 @@ namespace password_manager
             if (formToShow is platformDefaultForm platformForm) platformForm.customizeToPlatform(platformName);
             else if (formToShow is addNewProfile profileForm)
             {
-                profileForm.passMainFormReference(this);
+                profileForm.passMainFormReference(this, platformList);
             }
 
             formToShow.TopLevel = false;
