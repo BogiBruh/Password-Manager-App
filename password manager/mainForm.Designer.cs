@@ -34,26 +34,29 @@
             // 
             // panelPasswordForm
             // 
-            this.panelPasswordForm.Location = new System.Drawing.Point(234, 0);
+            this.panelPasswordForm.Location = new System.Drawing.Point(312, 0);
+            this.panelPasswordForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelPasswordForm.Name = "panelPasswordForm";
-            this.panelPasswordForm.Size = new System.Drawing.Size(712, 583);
+            this.panelPasswordForm.Size = new System.Drawing.Size(949, 718);
             this.panelPasswordForm.TabIndex = 0;
             // 
             // panelProfiles
             // 
             this.panelProfiles.Location = new System.Drawing.Point(0, 0);
+            this.panelProfiles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelProfiles.Name = "panelProfiles";
-            this.panelProfiles.Size = new System.Drawing.Size(233, 502);
+            this.panelProfiles.Size = new System.Drawing.Size(311, 620);
             this.panelProfiles.TabIndex = 1;
             // 
             // mainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(944, 501);
+            this.ClientSize = new System.Drawing.Size(1259, 617);
             this.Controls.Add(this.panelProfiles);
             this.Controls.Add(this.panelPasswordForm);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "mainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.mainForm_Load);

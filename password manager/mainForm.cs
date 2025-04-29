@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.IO;
 
 //GRAH - NAPRAVI LEPO PLATFORM KLASU!!!
 
@@ -25,18 +27,20 @@ namespace password_manager
         private void mainForm_Load(object sender, EventArgs e)
         {
             //INITIALIZING VALUES - and the form with the password
-            draw("placeholder", "platform");
+            //draw("placeholder", "platform");
 
-            buttonList.Add(buttonGenerator.generateAButton("Add a new profile", this));
+            buttonList.Add(buttonGenerator.generateAButton("Add a new profile", this, null));
 
             panelProfiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             panelPasswordForm.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
 
             drawButtons();
+           //label1.Text = platformList[0].platformName;    
         }
 
-        public void draw(string platformName, string formType)
+        public void draw(platform Platform, string formType)
         {
+            //initializing form variable
             Form formToShow = null;
             switch (formType) {
                 case "platform":
@@ -49,30 +53,18 @@ namespace password_manager
                     MessageBox.Show("whaddahell");
                     break;
             }
-            Form formToClose = panelPasswordForm.Controls.OfType<platformDefaultForm>().FirstOrDefault();
+            
+            formCleanup.clean(panelPasswordForm);
 
-            if (formToClose != null)
+
+            if (formToShow is platformDefaultForm platformForm)
             {
-                switch (formToClose)
-                {
-                    case platformDefaultForm platForm:
-                        platForm.memCleanup();
-                        GC.Collect();
-                        platForm.Close();
-                        platForm.Dispose();
-                        break;
-                    case addNewProfile addNew:
-                        addNew.Close();
-                        addNew.Dispose();
-                        break;
-                    default:
-                        MessageBox.Show("that aint right");
-                        break;
-                }
-                panelPasswordForm.Controls.Clear();
+                /* as draw() is called in addNewProfile after we add a new item, it shouldnt 
+                 * create any problem if we just call the last item. I mean, there should always
+                 * be at least one item, right?
+                 */
+                platformForm.customizeToPlatform(Platform);
             }
-
-            if (formToShow is platformDefaultForm platformForm) platformForm.customizeToPlatform(platformName);
             else if (formToShow is addNewProfile profileForm)
             {
                 profileForm.passMainFormReference(this, platformList);
@@ -90,7 +82,9 @@ namespace password_manager
 
         public void addNew()
         {
-            draw("this wont be used, right?", "add");
+            //the add form doesnt do anything with platforms so its ok(?) to  send a null
+            platform platformBlank = null;
+            draw(platformBlank, "add");
         }
 
         public void drawButtons()
@@ -101,6 +95,19 @@ namespace password_manager
                 buttonList[i].Location = new Point(0, 0 + (buttonList.Count - i - 1) * 100);
                 panelProfiles.Controls.Add(buttonList[i]);
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            string jsonString = JsonSerializer.Serialize(platformList, new JsonSerializerOptions { WriteIndented = true });
+            MessageBox.Show(jsonString);
+
+            formCleanup.clean(panelPasswordForm);
+            panelProfiles.Controls.Clear();
+
+            File.WriteAllText("passwords.json", jsonString);
         }
     }
 }

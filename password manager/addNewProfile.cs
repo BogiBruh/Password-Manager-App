@@ -38,14 +38,14 @@ namespace password_manager
             {
                 MessageBox.Show("upsili dadili");
             }
-            else MainForm.buttonList.Add(buttonGenerator.generateAButton(platformName, MainForm));
+            else MainForm.buttonList.Add(buttonGenerator.generateAButton(platformName, MainForm, platformToAdd));
             loadingLabel.Text = "Generating the sidebar button, please wait...";
             loadingLabel.Refresh();
             MainForm.drawButtons();
             loadingLabel.Text = "Loading the pasword window, please wait...";
             loadingLabel.Refresh();
-            MainForm.draw(platformName, "platform");
             platforms.Add(platformToAdd);
+            MainForm.draw(platformToAdd, "platform");
         }
 
         public void passMainFormReference(mainForm formPassed, List<platform> platformList)
