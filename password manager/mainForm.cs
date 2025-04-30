@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using System.Text.Json;
 using System.IO;
 
-//GRAH - NAPRAVI LEPO PLATFORM KLASU!!!
-
 namespace password_manager
 {
     public partial class mainForm : Form
@@ -28,14 +26,29 @@ namespace password_manager
         {
             //INITIALIZING VALUES - and the form with the password
             //draw("placeholder", "platform");
-
+            string jsonTxt = null;
             buttonList.Add(buttonGenerator.generateAButton("Add a new profile", this, null));
 
             panelProfiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             panelPasswordForm.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
 
-            drawButtons();
+            if (File.Exists("passwords.json"))
+            {
+                jsonTxt = File.ReadAllText("passwords.json");
+            }
            //label1.Text = platformList[0].platformName;    
+
+           //Reading from JSON test
+           if(jsonTxt != null)
+            {
+                platformList = JsonSerializer.Deserialize<List<platform>>(jsonTxt);
+
+                for(int i = 0; i < platformList.Count(); i++)
+                {
+                    buttonList.Add(buttonGenerator.generateAButton(platformList[i].platformName, this, platformList[i]));
+                }
+            }
+            drawButtons();
         }
 
         public void draw(platform Platform, string formType)
@@ -63,6 +76,7 @@ namespace password_manager
                  * create any problem if we just call the last item. I mean, there should always
                  * be at least one item, right?
                  */
+                platformForm.passProfileObj(Platform);
                 platformForm.customizeToPlatform(Platform);
             }
             else if (formToShow is addNewProfile profileForm)
@@ -102,7 +116,7 @@ namespace password_manager
             base.OnFormClosing(e);
 
             string jsonString = JsonSerializer.Serialize(platformList, new JsonSerializerOptions { WriteIndented = true });
-            MessageBox.Show(jsonString);
+            //MessageBox.Show(jsonString); //i did this cause its cool to see
 
             formCleanup.clean(panelPasswordForm);
             panelProfiles.Controls.Clear();

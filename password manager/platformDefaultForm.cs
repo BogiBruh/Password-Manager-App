@@ -14,7 +14,7 @@ namespace password_manager
 {
     public partial class platformDefaultForm : Form
     {
-        public int passVisible = 1; // 1 - invisible, 0 - visible
+        public int passVisible = 0; // 1 - visible, 0 - invisible
         public string passwordString = "Placeholder Password Text.";
         /*visible and invisible generated at the start cause Image.FromFile call generates a new image in memory every time you click to hide
          *or show the password. thats the only button that consistently changes its look when pressed so its the only one so far ive
@@ -63,21 +63,35 @@ namespace password_manager
                 logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "photo.png"));
             }
             //INITIALIZING END, VARIABLE DEFINITIONSx
+            if(platform == null)
+            {
+                MessageBox.Show("Error: platform is null");
+            }
+            else
+            {
+                passwordString = platform.passwordString;
+            }
 
-
-            passwordField.Text = passwordString;
+            showHidePass_Click(sender, e);
         }
 
         private void generateBtn_Click(object sender, EventArgs e)
         {
-            generateBtn.Enabled = false;
-            label1.Visible = true;
-            confirmBtn.Visible = true;
-            confirmBtn.Enabled = false;
-            denyBtn.Visible = true;
-            denyBtn.Enabled = false;
+            if(platform.passwordString == null || platform.passwordString == "")
+            {
+                confirmBtn_Click(sender, e);
+            }
+            else
+            {
+                generateBtn.Enabled = false;
+                label1.Visible = true;
+                confirmBtn.Visible = true;
+                confirmBtn.Enabled = false;
+                denyBtn.Visible = true;
+                denyBtn.Enabled = false;
 
-            timerGnerate.Start();
+                timerGnerate.Start();
+            }
         }
 
         private void copyPassword_Click(object sender, EventArgs e)
@@ -139,7 +153,8 @@ namespace password_manager
             passwordField.Text = "";
 
             passwordString = PasswordGeneration.generateAPassword();
-            platform.setPassword(passwordString);
+            platform.passwordString = passwordString;
+
             switch (passVisible)
             {
                 case 0:

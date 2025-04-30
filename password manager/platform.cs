@@ -18,9 +18,6 @@ namespace password_manager
             passwordString = password;
         }
 
-        public void setPassword(string password)
-        {
-            passwordString = password;
-        }
+        public platform() { } //This is so JsonSerializer.Deserialize doesnt freak out
     }
 }
