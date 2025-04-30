@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using OpenQA.Selenium.DevTools.V133.Profiler;
 
 namespace password_manager
 {
     public partial class platformDefaultForm : Form
     {
-        public int passVisible = 1; // 1 - invisible, 0 - visible
+        public int passVisible = 0; // 1 - visible, 0 - invisible
         public string passwordString = "Placeholder Password Text.";
         /*visible and invisible generated at the start cause Image.FromFile call generates a new image in memory every time you click to hide
          *or show the password. thats the only button that consistently changes its look when pressed so its the only one so far ive
@@ -22,15 +23,16 @@ namespace password_manager
         readonly Image visible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "visibility.png")); 
         readonly Image invisible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "invisible.png"));
         //readonly to stop visual studio from complaining - how can an image not be readonly!?
+        platform platform = new platform(null, null);
 
-        public void customizeToPlatform(string platformNameStr)
+        public void customizeToPlatform(platform platform)
         {
             //instead of having a default image and "placeholder" as platformName.Text, show whats actually supposed to be there
-            platformName.Text = platformNameStr;
+            platformName.Text = platform.platformName;
 
-            if (File.Exists(Path.Combine(Application.StartupPath, "img", "logos", platformNameStr + ".png")))
+            if (File.Exists(Path.Combine(Application.StartupPath, "img", "logos", platform.platformName + ".png")))
             {
-                logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "logos", platformNameStr + ".png"));
+                logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "logos", platform.platformName + ".png"));
             }
             else
             {
@@ -61,26 +63,40 @@ namespace password_manager
                 logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "photo.png"));
             }
             //INITIALIZING END, VARIABLE DEFINITIONSx
+            if(platform == null)
+            {
+                MessageBox.Show("Error: platform is null");
+            }
+            else
+            {
+                passwordString = platform.passwordString;
+            }
 
-
-            passwordField.Text = passwordString;
+            showHidePass_Click(sender, e);
         }
 
         private void generateBtn_Click(object sender, EventArgs e)
         {
-            generateBtn.Enabled = false;
-            label1.Visible = true;
-            confirmBtn.Visible = true;
-            confirmBtn.Enabled = false;
-            denyBtn.Visible = true;
-            denyBtn.Enabled = false;
+            if(platform.passwordString == null || platform.passwordString == "")
+            {
+                confirmBtn_Click(sender, e);
+            }
+            else
+            {
+                generateBtn.Enabled = false;
+                label1.Visible = true;
+                confirmBtn.Visible = true;
+                confirmBtn.Enabled = false;
+                denyBtn.Visible = true;
+                denyBtn.Enabled = false;
 
-            timerGnerate.Start();
+                timerGnerate.Start();
+            }
         }
 
         private void copyPassword_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(passwordField.Text); //i never thought it was that easy
+            Clipboard.SetText(passwordString); //i never thought it was that easy
         }
 
         private void showHidePass_Click(object sender, EventArgs e)
@@ -137,6 +153,8 @@ namespace password_manager
             passwordField.Text = "";
 
             passwordString = PasswordGeneration.generateAPassword();
+            platform.passwordString = passwordString;
+
             switch (passVisible)
             {
                 case 0:
@@ -157,6 +175,11 @@ namespace password_manager
             logoBox.Image.Dispose();
             logoBox.Image = null;
             logoBox.Dispose();
+        }
+
+        public void passProfileObj(platform platform)
+        {
+            this.platform = platform;
         }
     }
 }
