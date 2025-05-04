@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Text.Json;
 
 namespace password_manager
 {
@@ -23,20 +23,39 @@ namespace password_manager
         private void mainForm_Load(object sender, EventArgs e)
         {
             //INITIALIZING VALUES - and the form with the password
-            draw("placeholder", "platform");
-
-            buttonList.Add(buttonGenerator.generateAButton("Add a new profile", this));
-
+            //draw("placeholder", "platform");
+            string jsonTxt = null;
+            buttonList.Add(buttonGenerator.generateAButton("Add a new profile", this, null));
+            /*due to oversight in the system, draw() needs a platform and not just a form
+             * so in case of landing page, send platformBlank
+             */
+            platform platformBlank = new platform();
             panelProfiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             panelPasswordForm.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
 
             drawButtons();
+
+            /*First form load
+             *If there isn't any platform(ie no JSON) it loads landingPage.cs into the platformPanel
+             *if there however is, it loads from the first button - aka the last one on the list
+             */
+            if (buttonList.Count == 1)
+            {
+                draw(platformBlank, "landing");
+            }
+            else
+            {
+                draw(platformList[platformList.Count() - 1], "platform");
+            }
         }
 
         public void draw(string platformName, string formType)
         {
             Form formToShow = null;
             switch (formType) {
+                case "landing":
+                    formToShow = new landingPage();
+                    break;
                 case "platform":
                     formToShow = new platformDefaultForm();
                     break;
@@ -75,8 +94,12 @@ namespace password_manager
             {
                 profileForm.passMainFormReference(this);
             }
+            /*else if(formToShow is landingPage landing)
+            {//if needed - add
+                landing
+            }*/
 
-            formToShow.TopLevel = false;
+                formToShow.TopLevel = false;
             panelPasswordForm.Controls.Add(formToShow);
 
             formToShow.Show();
@@ -96,9 +119,32 @@ namespace password_manager
             // add the buttons backwards, as to not fuck around with array reversal
             for (int i = buttonList.Count - 1; i >= 0; i--)
             {
-                buttonList[i].Location = new Point(0, 0 + (buttonList.Count - i - 1) * 100);
+                buttonList[i].Location = new Point(0, 0 + (buttonList.Count - i - 1) * 95);
                 panelProfiles.Controls.Add(buttonList[i]);
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            string jsonString = JsonSerializer.Serialize(platformList, new JsonSerializerOptions { WriteIndented = true });
+            //MessageBox.Show(jsonString); //i did this cause its cool to see
+
+            formCleanup.clean(panelPasswordForm);
+            panelProfiles.Controls.Clear();
+
+            File.WriteAllText("passwords.json", jsonString);
+        }
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("App made by boger\nicons by Google on flaticon\nPython packages selenium, requests");
+        }
+
+        private void addEmailAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("WIP");
         }
     }
 }

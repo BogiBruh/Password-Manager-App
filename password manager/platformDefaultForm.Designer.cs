@@ -46,28 +46,32 @@
             // 
             // logoBox
             // 
-            this.logoBox.Location = new System.Drawing.Point(133, 38);
+            this.logoBox.InitialImage = null;
+            this.logoBox.Location = new System.Drawing.Point(177, 47);
+            this.logoBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.logoBox.Name = "logoBox";
-            this.logoBox.Size = new System.Drawing.Size(75, 75);
+            this.logoBox.Size = new System.Drawing.Size(100, 92);
             this.logoBox.TabIndex = 0;
             this.logoBox.TabStop = false;
             // 
             // passwordField
             // 
             this.passwordField.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordField.Location = new System.Drawing.Point(76, 246);
+            this.passwordField.Location = new System.Drawing.Point(101, 303);
+            this.passwordField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.passwordField.Name = "passwordField";
             this.passwordField.ReadOnly = true;
-            this.passwordField.Size = new System.Drawing.Size(394, 31);
+            this.passwordField.Size = new System.Drawing.Size(524, 37);
             this.passwordField.TabIndex = 1;
             this.passwordField.TabStop = false;
             // 
             // copyPassword
             // 
             this.copyPassword.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.copyPassword.Location = new System.Drawing.Point(529, 246);
+            this.copyPassword.Location = new System.Drawing.Point(705, 303);
+            this.copyPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.copyPassword.Name = "copyPassword";
-            this.copyPassword.Size = new System.Drawing.Size(36, 33);
+            this.copyPassword.Size = new System.Drawing.Size(48, 41);
             this.copyPassword.TabIndex = 2;
             this.copyPassword.TabStop = false;
             this.copyPassword.Click += new System.EventHandler(this.copyPassword_Click);
@@ -75,9 +79,10 @@
             // showHidePass
             // 
             this.showHidePass.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.showHidePass.Location = new System.Drawing.Point(604, 247);
+            this.showHidePass.Location = new System.Drawing.Point(805, 304);
+            this.showHidePass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.showHidePass.Name = "showHidePass";
-            this.showHidePass.Size = new System.Drawing.Size(37, 32);
+            this.showHidePass.Size = new System.Drawing.Size(49, 39);
             this.showHidePass.TabIndex = 3;
             this.showHidePass.TabStop = false;
             this.showHidePass.Click += new System.EventHandler(this.showHidePass_Click);
@@ -86,9 +91,10 @@
             // 
             this.generateBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.generateBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generateBtn.Location = new System.Drawing.Point(174, 296);
+            this.generateBtn.Location = new System.Drawing.Point(232, 364);
+            this.generateBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.generateBtn.Name = "generateBtn";
-            this.generateBtn.Size = new System.Drawing.Size(391, 86);
+            this.generateBtn.Size = new System.Drawing.Size(521, 106);
             this.generateBtn.TabIndex = 4;
             this.generateBtn.Text = "Generate a new password";
             this.generateBtn.UseVisualStyleBackColor = false;
@@ -98,9 +104,10 @@
             // 
             this.platformName.AutoSize = true;
             this.platformName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.platformName.Location = new System.Drawing.Point(128, 145);
+            this.platformName.Location = new System.Drawing.Point(171, 178);
+            this.platformName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.platformName.Name = "platformName";
-            this.platformName.Size = new System.Drawing.Size(127, 26);
+            this.platformName.Size = new System.Drawing.Size(157, 31);
             this.platformName.TabIndex = 5;
             this.platformName.Text = "Placeholder";
             // 
@@ -108,9 +115,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(116, 397);
+            this.label1.Location = new System.Drawing.Point(155, 489);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(477, 36);
+            this.label1.Size = new System.Drawing.Size(607, 48);
             this.label1.TabIndex = 6;
             this.label1.Text = "                    Are you sure you want to change your password?\r\nThis action i" +
     "s permanent and you cannot get the current password back\r\n";
@@ -120,9 +128,10 @@
             // 
             this.confirmBtn.BackColor = System.Drawing.Color.Red;
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmBtn.Location = new System.Drawing.Point(207, 442);
+            this.confirmBtn.Location = new System.Drawing.Point(276, 544);
+            this.confirmBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.confirmBtn.Name = "confirmBtn";
-            this.confirmBtn.Size = new System.Drawing.Size(50, 50);
+            this.confirmBtn.Size = new System.Drawing.Size(67, 62);
             this.confirmBtn.TabIndex = 7;
             this.confirmBtn.Text = "YES";
             this.confirmBtn.UseVisualStyleBackColor = false;
@@ -132,9 +141,10 @@
             // denyBtn
             // 
             this.denyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.denyBtn.Location = new System.Drawing.Point(436, 442);
+            this.denyBtn.Location = new System.Drawing.Point(581, 544);
+            this.denyBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.denyBtn.Name = "denyBtn";
-            this.denyBtn.Size = new System.Drawing.Size(50, 50);
+            this.denyBtn.Size = new System.Drawing.Size(67, 62);
             this.denyBtn.TabIndex = 8;
             this.denyBtn.Text = "No";
             this.denyBtn.UseVisualStyleBackColor = true;
@@ -148,9 +158,10 @@
             // 
             // platformDefaultForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 540);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(949, 665);
             this.Controls.Add(this.denyBtn);
             this.Controls.Add(this.confirmBtn);
             this.Controls.Add(this.label1);
@@ -161,6 +172,7 @@
             this.Controls.Add(this.passwordField);
             this.Controls.Add(this.logoBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "platformDefaultForm";
             this.Text = "platformDefaultForm";
             this.Load += new System.EventHandler(this.platformDefaultForm_Load);

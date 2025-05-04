@@ -12,8 +12,8 @@ namespace password_manager
         public static Button generateAButton(string btnText, mainForm formWindow)
         {
             Button buttonga = new Button();
-            buttonga.Width = 232;
-            buttonga.Height = 100;
+            buttonga.Width = 227;
+            buttonga.Height = 95;
             buttonga.Text = btnText;
 
             if(btnText != "Add a new profile")
