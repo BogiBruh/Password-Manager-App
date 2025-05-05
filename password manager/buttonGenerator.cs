@@ -9,7 +9,7 @@ namespace password_manager
 {
     class buttonGenerator
     {
-        public static Button generateAButton(string btnText, mainForm formWindow)
+        public static Button generateAButton(string btnText, mainForm formWindow, platform Platform)
         {
             Button buttonga = new Button();
             buttonga.Width = 227;
@@ -18,7 +18,7 @@ namespace password_manager
 
             if(btnText != "Add a new profile")
             {
-                buttonga.Click += (sender, e) => formWindow.draw(btnText, "platform");
+                buttonga.Click += (sender, e) => formWindow.draw(Platform, "platform");
             }
             else
             {

@@ -1,11 +1,11 @@
 # Password Manager App (name subject to change)
 This C# WinForms project I'm writing to see if I'm able to create a functional and full fledged (small scope) application.
-</br>It's like Dashlane™ but worse, with local storage(not yet), and frankly not worth a cent.
+</br>It's like Dashlane™ but worse, with local storage, and frankly not worth a cent.
 
 <a href="https://www.haveibeenpwned.com">Have you been pwned?</a> Did you ever wonder "Awh man, I really need a more secure password, but I can't remember them nor write them in a notebook"? Lucky you, because I've got a(n unfinished) product you probably shouldn't use!
 # Functionality
 With this application you can:
-<li>generate and store(not yet) secure passwords with a state of the art (basic) randomly generated string of characters,</li>
+<li>generate and store secure passwords with a state of the art (basic) randomly generated string of characters,</li>
 <li>create a profile for each platform/app/website you're storing the password of,</li>
 <li>do all that with multiple emails(still not possible) and,</li>
 <li>...not much else, really.</li>

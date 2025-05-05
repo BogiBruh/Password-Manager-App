@@ -39,17 +39,19 @@
             // panelPasswordForm
             // 
             this.panelPasswordForm.BackColor = System.Drawing.SystemColors.Control;
-            this.panelPasswordForm.Location = new System.Drawing.Point(244, 27);
+            this.panelPasswordForm.Location = new System.Drawing.Point(325, 0);
+            this.panelPasswordForm.Margin = new System.Windows.Forms.Padding(4);
             this.panelPasswordForm.Name = "panelPasswordForm";
-            this.panelPasswordForm.Size = new System.Drawing.Size(714, 556);
+            this.panelPasswordForm.Size = new System.Drawing.Size(952, 718);
             this.panelPasswordForm.TabIndex = 0;
             // 
             // panelProfiles
             // 
             this.panelProfiles.AutoScroll = true;
-            this.panelProfiles.Location = new System.Drawing.Point(0, 27);
+            this.panelProfiles.Location = new System.Drawing.Point(0, 0);
+            this.panelProfiles.Margin = new System.Windows.Forms.Padding(4);
             this.panelProfiles.Name = "panelProfiles";
-            this.panelProfiles.Size = new System.Drawing.Size(244, 477);
+            this.panelProfiles.Size = new System.Drawing.Size(325, 620);
             this.panelProfiles.TabIndex = 1;
             // 
             // menuStrip1
@@ -79,14 +81,13 @@
             // 
             // mainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(944, 501);
+            this.ClientSize = new System.Drawing.Size(1259, 617);
             this.Controls.Add(this.panelProfiles);
             this.Controls.Add(this.panelPasswordForm);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "mainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.mainForm_Load);

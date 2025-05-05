@@ -35,11 +35,12 @@ namespace password_manager
             }
 
             webDriving.Quit();*/
-
+            Clipboard.SetText($"\"{filePath.getRootPath()}\\python scraper\\scraper.py\" \"{inputString}\"");
             var psi = new ProcessStartInfo
             {
-                FileName = "python", // or full path to python.exe
-                Arguments = $"\"C:\\Users\\Intel\\source\\repos\\password manager\\password manager\\python scraper\\scraper.py\" \"{inputString}\"", // pass inputString as an arg
+                FileName = "python", 
+                //Arguments = $"\"C:\\Users\\Intel\\source\\repos\\password manager\\password manager\\python scraper\\scraper.py\" \"{inputString}\"", // pass inputString as an arg
+                Arguments = $"\"{filePath.getRootPath()}\\python scraper\\scraper.py\" \"{inputString}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
