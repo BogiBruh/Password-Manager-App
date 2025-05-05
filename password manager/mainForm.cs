@@ -166,17 +166,10 @@ namespace password_manager
         {
             MessageBox.Show("Program made by Bogi\nIcons from flaticon.com, by Google\nPython, Selenium and Requests rights reserved by their owners");
         }
-
-        private void addEmailToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            platform nullPlatform = null;
-            formCleanup.clean(panelProfiles);
-            draw(nullPlatform, "email"); 
-        }
-
         private void backupPasswordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("WIP");
         }
+
     }
 }

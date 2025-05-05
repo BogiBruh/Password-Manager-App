@@ -48,7 +48,7 @@
             // 
             this.logoBox.InitialImage = null;
             this.logoBox.Location = new System.Drawing.Point(177, 47);
-            this.logoBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.logoBox.Margin = new System.Windows.Forms.Padding(4);
             this.logoBox.Name = "logoBox";
             this.logoBox.Size = new System.Drawing.Size(100, 92);
             this.logoBox.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             this.passwordField.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordField.Location = new System.Drawing.Point(101, 303);
-            this.passwordField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.passwordField.Margin = new System.Windows.Forms.Padding(4);
             this.passwordField.Name = "passwordField";
             this.passwordField.ReadOnly = true;
             this.passwordField.Size = new System.Drawing.Size(524, 37);
@@ -69,7 +69,7 @@
             // 
             this.copyPassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.copyPassword.Location = new System.Drawing.Point(705, 303);
-            this.copyPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.copyPassword.Margin = new System.Windows.Forms.Padding(4);
             this.copyPassword.Name = "copyPassword";
             this.copyPassword.Size = new System.Drawing.Size(48, 41);
             this.copyPassword.TabIndex = 2;
@@ -80,7 +80,7 @@
             // 
             this.showHidePass.Cursor = System.Windows.Forms.Cursors.Hand;
             this.showHidePass.Location = new System.Drawing.Point(805, 304);
-            this.showHidePass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showHidePass.Margin = new System.Windows.Forms.Padding(4);
             this.showHidePass.Name = "showHidePass";
             this.showHidePass.Size = new System.Drawing.Size(49, 39);
             this.showHidePass.TabIndex = 3;
@@ -92,7 +92,7 @@
             this.generateBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.generateBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generateBtn.Location = new System.Drawing.Point(232, 364);
-            this.generateBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.generateBtn.Margin = new System.Windows.Forms.Padding(4);
             this.generateBtn.Name = "generateBtn";
             this.generateBtn.Size = new System.Drawing.Size(521, 106);
             this.generateBtn.TabIndex = 4;
@@ -129,7 +129,7 @@
             this.confirmBtn.BackColor = System.Drawing.Color.Red;
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirmBtn.Location = new System.Drawing.Point(276, 544);
-            this.confirmBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.confirmBtn.Margin = new System.Windows.Forms.Padding(4);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(67, 62);
             this.confirmBtn.TabIndex = 7;
@@ -142,7 +142,7 @@
             // 
             this.denyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.denyBtn.Location = new System.Drawing.Point(581, 544);
-            this.denyBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.denyBtn.Margin = new System.Windows.Forms.Padding(4);
             this.denyBtn.Name = "denyBtn";
             this.denyBtn.Size = new System.Drawing.Size(67, 62);
             this.denyBtn.TabIndex = 8;
@@ -161,7 +161,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(712, 540);
+            this.ClientSize = new System.Drawing.Size(934, 690);
             this.Controls.Add(this.denyBtn);
             this.Controls.Add(this.confirmBtn);
             this.Controls.Add(this.label1);
@@ -172,7 +172,7 @@
             this.Controls.Add(this.passwordField);
             this.Controls.Add(this.logoBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "platformDefaultForm";
             this.Text = "platformDefaultForm";
             this.Load += new System.EventHandler(this.platformDefaultForm_Load);

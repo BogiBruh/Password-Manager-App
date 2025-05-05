@@ -38,25 +38,28 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(116, 77);
+            this.label1.Location = new System.Drawing.Point(155, 95);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(456, 31);
+            this.label1.Size = new System.Drawing.Size(573, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "What platform would you like to add?\r\n";
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(112, 246);
+            this.textBox1.Location = new System.Drawing.Point(149, 303);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(408, 35);
+            this.textBox1.Size = new System.Drawing.Size(543, 41);
             this.textBox1.TabIndex = 1;
             // 
             // finalizeInput
             // 
-            this.finalizeInput.Location = new System.Drawing.Point(535, 246);
+            this.finalizeInput.Location = new System.Drawing.Point(713, 303);
+            this.finalizeInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.finalizeInput.Name = "finalizeInput";
-            this.finalizeInput.Size = new System.Drawing.Size(37, 37);
+            this.finalizeInput.Size = new System.Drawing.Size(49, 46);
             this.finalizeInput.TabIndex = 2;
             this.finalizeInput.Text = "✔";
             this.finalizeInput.UseVisualStyleBackColor = true;
@@ -66,22 +69,25 @@
             // 
             this.loadingLabel.AutoSize = true;
             this.loadingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadingLabel.Location = new System.Drawing.Point(295, 353);
+            this.loadingLabel.Location = new System.Drawing.Point(393, 434);
+            this.loadingLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.loadingLabel.Name = "loadingLabel";
-            this.loadingLabel.Size = new System.Drawing.Size(79, 29);
+            this.loadingLabel.Size = new System.Drawing.Size(95, 36);
             this.loadingLabel.TabIndex = 3;
             this.loadingLabel.Text = "label2";
             // 
             // addNewProfile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 501);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(928, 617);
             this.Controls.Add(this.loadingLabel);
             this.Controls.Add(this.finalizeInput);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "addNewProfile";
             this.Text = "addNewProfile";
             this.Load += new System.EventHandler(this.addNewProfile_Load);

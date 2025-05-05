@@ -31,62 +31,65 @@
             this.panelPasswordForm = new System.Windows.Forms.Panel();
             this.panelProfiles = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupPasswordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelPasswordForm
             // 
             this.panelPasswordForm.BackColor = System.Drawing.SystemColors.Control;
-            this.panelPasswordForm.Location = new System.Drawing.Point(325, 0);
+            this.panelPasswordForm.Location = new System.Drawing.Point(325, 28);
             this.panelPasswordForm.Margin = new System.Windows.Forms.Padding(4);
             this.panelPasswordForm.Name = "panelPasswordForm";
-            this.panelPasswordForm.Size = new System.Drawing.Size(952, 718);
+            this.panelPasswordForm.Size = new System.Drawing.Size(934, 690);
             this.panelPasswordForm.TabIndex = 0;
             // 
             // panelProfiles
             // 
             this.panelProfiles.AutoScroll = true;
-            this.panelProfiles.Location = new System.Drawing.Point(0, 0);
+            this.panelProfiles.Location = new System.Drawing.Point(0, 28);
             this.panelProfiles.Margin = new System.Windows.Forms.Padding(4);
             this.panelProfiles.Name = "panelProfiles";
-            this.panelProfiles.Size = new System.Drawing.Size(325, 620);
+            this.panelProfiles.Size = new System.Drawing.Size(325, 690);
             this.panelProfiles.TabIndex = 1;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backupPasswordsToolStripMenuItem,
             this.infoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(944, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1259, 30);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // infoToolStripMenuItem
-            // 
-            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.infoToolStripMenuItem.Text = "Info";
-            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
             // backupPasswordsToolStripMenuItem
             // 
             this.backupPasswordsToolStripMenuItem.Name = "backupPasswordsToolStripMenuItem";
-            this.backupPasswordsToolStripMenuItem.Size = new System.Drawing.Size(116, 20);
+            this.backupPasswordsToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.backupPasswordsToolStripMenuItem.Text = "Backup passwords";
             this.backupPasswordsToolStripMenuItem.Click += new System.EventHandler(this.backupPasswordsToolStripMenuItem_Click);
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(49, 26);
+            this.infoToolStripMenuItem.Text = "Info";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1259, 617);
+            this.ClientSize = new System.Drawing.Size(1259, 643);
             this.Controls.Add(this.panelProfiles);
             this.Controls.Add(this.panelPasswordForm);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "mainForm";
             this.Text = "Form1";
