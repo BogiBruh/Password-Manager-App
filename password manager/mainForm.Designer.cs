@@ -31,63 +31,51 @@
             this.panelPasswordForm = new System.Windows.Forms.Panel();
             this.panelProfiles = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addEmailAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupPasswordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelPasswordForm
             // 
             this.panelPasswordForm.BackColor = System.Drawing.SystemColors.Control;
-            this.panelPasswordForm.Location = new System.Drawing.Point(325, 28);
-            this.panelPasswordForm.Margin = new System.Windows.Forms.Padding(4);
+            this.panelPasswordForm.Location = new System.Drawing.Point(244, 27);
             this.panelPasswordForm.Name = "panelPasswordForm";
-            this.panelPasswordForm.Size = new System.Drawing.Size(952, 590);
+            this.panelPasswordForm.Size = new System.Drawing.Size(714, 556);
             this.panelPasswordForm.TabIndex = 0;
             // 
             // panelProfiles
             // 
             this.panelProfiles.AutoScroll = true;
-            this.panelProfiles.Location = new System.Drawing.Point(0, 28);
-            this.panelProfiles.Margin = new System.Windows.Forms.Padding(4);
+            this.panelProfiles.Location = new System.Drawing.Point(0, 27);
             this.panelProfiles.Name = "panelProfiles";
-            this.panelProfiles.Size = new System.Drawing.Size(325, 590);
+            this.panelProfiles.Size = new System.Drawing.Size(244, 477);
             this.panelProfiles.TabIndex = 1;
             // 
             // menuStrip1
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testToolStripMenuItem,
+            this.backupPasswordsToolStripMenuItem,
             this.infoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1259, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(944, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addEmailAccountToolStripMenuItem});
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
-            this.testToolStripMenuItem.Text = "Emails";
             // 
             // infoToolStripMenuItem
             // 
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
-            // addEmailAccountToolStripMenuItem
+            // backupPasswordsToolStripMenuItem
             // 
-            this.addEmailAccountToolStripMenuItem.Name = "addEmailAccountToolStripMenuItem";
-            this.addEmailAccountToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.addEmailAccountToolStripMenuItem.Text = "Add Email Account";
-            this.addEmailAccountToolStripMenuItem.Click += new System.EventHandler(this.addEmailAccountToolStripMenuItem_Click);
+            this.backupPasswordsToolStripMenuItem.Name = "backupPasswordsToolStripMenuItem";
+            this.backupPasswordsToolStripMenuItem.Size = new System.Drawing.Size(116, 20);
+            this.backupPasswordsToolStripMenuItem.Text = "Backup passwords";
+            this.backupPasswordsToolStripMenuItem.Click += new System.EventHandler(this.backupPasswordsToolStripMenuItem_Click);
             // 
             // mainForm
             // 
@@ -98,7 +86,7 @@
             this.Controls.Add(this.panelProfiles);
             this.Controls.Add(this.panelPasswordForm);
             this.Controls.Add(this.menuStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "mainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.mainForm_Load);
@@ -114,9 +102,8 @@
         private System.Windows.Forms.Panel panelPasswordForm;
         private System.Windows.Forms.Panel panelProfiles;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addEmailAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backupPasswordsToolStripMenuItem;
     }
 }
 

@@ -27,6 +27,7 @@ namespace password_manager
         private void finalizeInput_Click(object sender, EventArgs e)
         {
             string platformName = textBox1.Text;
+            platform platformToAdd = new platform("",platformName, "");
             loadingLabel.Text = $"Loading {platformName}'s logo, please wait...";
             loadingLabel.Refresh(); //forcing a refresh before a heavy function call should be no problem(clueless)
             loadingLabel.Left = this.Width / 2 - loadingLabel.Width / 2;

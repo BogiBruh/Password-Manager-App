@@ -22,6 +22,7 @@ namespace password_manager
         readonly Image visible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "visibility.png")); 
         readonly Image invisible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "invisible.png"));
         //readonly to stop visual studio from complaining - how can an image not be readonly!?
+        platform platform = new platform(null, null, null);
 
         public void customizeToPlatform(string platformNameStr)
         {

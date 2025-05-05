@@ -35,17 +35,16 @@ namespace password_manager
 
             drawButtons();
 
-            /*First form load
-             *If there isn't any platform(ie no JSON) it loads landingPage.cs into the platformPanel
-             *if there however is, it loads from the first button - aka the last one on the list
+            /*if there are no profiles, draw the landing page
+             * else draw the last item off the list
              */
-            if (buttonList.Count == 1)
+            if(buttonList.Count == 1)
             {
-                draw(platformBlank, "landing");
+                draw(null, "landing");
             }
             else
             {
-                draw(platformList[platformList.Count() - 1], "platform");
+                draw(platformList[platformList.Count - 1], "platform");
             }
         }
 
@@ -55,6 +54,9 @@ namespace password_manager
             switch (formType) {
                 case "landing":
                     formToShow = new landingPage();
+                    break;
+                case "email":
+                    formToShow = new addEmail();
                     break;
                 case "platform":
                     formToShow = new platformDefaultForm();
@@ -68,7 +70,15 @@ namespace password_manager
             }
             Form formToClose = panelPasswordForm.Controls.OfType<platformDefaultForm>().FirstOrDefault();
 
-            if (formToClose != null)
+            if(formToShow is landingPage landing)
+            {
+                //?
+            }
+            else if(formToShow is addEmail email)
+            {
+                //?
+            }
+            else if (formToShow is platformDefaultForm platformForm)
             {
                 switch (formToClose)
                 {
@@ -116,10 +126,16 @@ namespace password_manager
 
         public void drawButtons()
         {
+            ComboBox emailList = new ComboBox();
+            emailList.Font = new Font(emailList.Font.FontFamily, 10);
+            emailList.Width = 225;
+            panelProfiles.Controls.Add(emailList);
+            emailList.Items.Add("Add new emal address");
+            emailList.SelectedIndex = 0;
             // add the buttons backwards, as to not fuck around with array reversal
             for (int i = buttonList.Count - 1; i >= 0; i--)
             {
-                buttonList[i].Location = new Point(0, 0 + (buttonList.Count - i - 1) * 95);
+                buttonList[i].Location = new Point(0, 25 + (buttonList.Count - i - 1) * 94);
                 panelProfiles.Controls.Add(buttonList[i]);
             }
         }
@@ -139,10 +155,17 @@ namespace password_manager
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("App made by boger\nicons by Google on flaticon\nPython packages selenium, requests");
+            MessageBox.Show("Program made by Bogi\nIcons from flaticon.com, by Google\nPython, Selenium and Requests rights reserved by their owners");
         }
 
-        private void addEmailAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addEmailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            platform nullPlatform = null;
+            formCleanup.clean(panelProfiles);
+            draw(nullPlatform, "email"); 
+        }
+
+        private void backupPasswordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("WIP");
         }

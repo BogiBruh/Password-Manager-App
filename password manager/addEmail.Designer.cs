@@ -1,6 +1,6 @@
 ﻿namespace password_manager
 {
-    partial class landingPage
+    partial class addEmail
     {
         /// <summary>
         /// Required designer variable.
@@ -34,22 +34,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(606, 140);
+            this.label1.Location = new System.Drawing.Point(369, 114);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 31);
+            this.label1.Size = new System.Drawing.Size(24, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "welcom";
+            this.label1.Text = "test";
             // 
-            // landingPage
+            // addEmail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(698, 517);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "landingPage";
-            this.Text = "landingPage";
+            this.Name = "addEmail";
+            this.Text = "addEmail";
             this.ResumeLayout(false);
             this.PerformLayout();
 

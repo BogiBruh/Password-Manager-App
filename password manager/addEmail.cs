@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace password_manager
 {
-    public partial class landingPage : Form
+    public partial class addEmail : Form
     {
-        public landingPage()
+        public addEmail()
         {
             InitializeComponent();
         }
