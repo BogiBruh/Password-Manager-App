@@ -8,17 +8,23 @@ import time
 def scrapeLogo(inputString):
     print("herher")
     webDriving = webdriver.Chrome()
-    searchString = "https://duckduckgo.com/?q=" + inputString + "+logo+png"
+    searchString = "https://duckduckgo.com/?q=" + inputString + "+transparent+logo+png&ia=images"
     webDriving.get(searchString)
 
+    #Wait half a second to grab the images anchor tag
+    time.sleep(0.5)
+    imageTab = webDriving.find_element(By.LINK_TEXT, "Images")
+    imageTab.click()
+
+    #wait half a second for the images to load
+    time.sleep(0.5)
+
     imgLink = None
-    starttime = time.time_ns()
-    currentTime = starttime
-    timeout = 5 * (10 ** (-9))
+
     print("here")
-    while imgLink == None and currentTime - starttime < timeout:
+    while imgLink == None:
         imgLink = webDriving.find_element(By.XPATH, "//img[@loading = 'lazy']")
-        currentTime = time.time_ns()
+        time.sleep(0.001)
         
     if imgLink == None:
         print("nema slike :(((((((")
@@ -31,7 +37,7 @@ def scrapeLogo(inputString):
     with open(imgWritePath, "wb") as file:
         file.write(imageSrc.content)
 
-    time.sleep(3)
+    time.sleep(1)
 
     webDriving.quit()
 

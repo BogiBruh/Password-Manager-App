@@ -8,14 +8,14 @@ namespace password_manager
 {
     public class platform
     {
-        public string emailAddress { get; set; }
+        public string additionalData { get; set; }
         public string platformName { get; set; }
         public string passwordString { get; set; }
         //public string emailString; - add when adding emails
 
-        public platform(string email, string platform, string password)
+        public platform(string data, string platform, string password)
         {
-            emailAddress = email;
+            additionalData = data;
             platformName = platform;
             passwordString = password;
         }

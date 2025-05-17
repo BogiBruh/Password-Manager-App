@@ -24,11 +24,13 @@ namespace password_manager
         readonly Image invisible = Image.FromFile(Path.Combine(Application.StartupPath, "img", "icons", "invisible.png"));
         //readonly to stop visual studio from complaining - how can an image not be readonly!?
         platform platform = new platform(null, null, null);
+        public mainForm mainForm = null;
 
         public void customizeToPlatform(platform platform)
         {
             //instead of having a default image and "placeholder" as platformName.Text, show whats actually supposed to be there
             platformName.Text = platform.platformName;
+            additionalDataTxtBox.Text = platform.additionalData;
 
             if (File.Exists(Path.Combine(Application.StartupPath, "img", "logos", platform.platformName + ".png")))
             {
@@ -90,6 +92,9 @@ namespace password_manager
                 denyBtn.Visible = true;
                 denyBtn.Enabled = false;
 
+                additionalDataTxtBox.Visible = false;
+                additionalLabel.Visible = false;
+
                 timerGnerate.Start();
             }
         }
@@ -139,6 +144,9 @@ namespace password_manager
             confirmBtn.Enabled = false;
             denyBtn.Visible = false;
             denyBtn.Enabled = false;
+
+            additionalDataTxtBox.Visible = true;
+            additionalLabel.Visible = true;
         }
 
         private void confirmBtn_Click(object sender, EventArgs e)
@@ -150,10 +158,14 @@ namespace password_manager
             denyBtn.Visible = false;
             denyBtn.Enabled = false;
 
+            additionalDataTxtBox.Visible = true;
+            additionalLabel.Visible = true;
+
             passwordField.Text = "";
 
             passwordString = PasswordGeneration.generateAPassword();
             platform.passwordString = passwordString;
+            //platform.emailAddress = mainForm.currentEmail;
 
             switch (passVisible)
             {
@@ -172,13 +184,15 @@ namespace password_manager
 
         public void memCleanup()
         {
+            platform.additionalData = additionalDataTxtBox.Text;
             logoBox.Image.Dispose();
             logoBox.Image = null;
             logoBox.Dispose();
         }
 
-        public void passProfileObj(platform platform)
+        public void passProfileObj(mainForm main, platform platform)
         {
+            this.mainForm = main;
             this.platform = platform;
         }
     }

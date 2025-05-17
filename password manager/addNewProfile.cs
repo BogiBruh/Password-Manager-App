@@ -53,5 +53,14 @@ namespace password_manager
             MainForm = formPassed;
             platforms = platformList;
         }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                finalizeInput_Click(sender, e);
+            }
+        }
     }
 }

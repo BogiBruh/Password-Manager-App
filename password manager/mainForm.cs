@@ -17,6 +17,7 @@ namespace password_manager
         public List<Button> buttonList = new List<Button>();
 
         public List<platform> platformList = new List<platform>();
+
         public mainForm()
         {
             InitializeComponent();
@@ -31,7 +32,6 @@ namespace password_manager
             /*due to oversight in the system, draw() needs a platform and not just a form
              * so in case of landing page, send platformBlank
              */
-            platform platformBlank = new platform();
             panelProfiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             panelPasswordForm.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
 
@@ -56,7 +56,7 @@ namespace password_manager
             /*if there are no profiles, draw the landing page
              * else draw the last item off the list
              */
-            if(buttonList.Count == 1)
+            if (buttonList.Count == 1)
             {
                 draw(null, "landing");
             }
@@ -96,7 +96,7 @@ namespace password_manager
             }
             else if(formToShow is addEmail email)
             {
-                //?
+                email.forwardMainReference(this, panelProfiles);
             }
             else if (formToShow is platformDefaultForm platformForm)
             {
@@ -104,17 +104,13 @@ namespace password_manager
                  * create any problem if we just call the last item. I mean, there should always
                  * be at least one item, right?
                  */
-                platformForm.passProfileObj(Platform);
+                platformForm.passProfileObj(this, Platform);
                 platformForm.customizeToPlatform(Platform);
             }
             else if (formToShow is addNewProfile profileForm)
             {
                 profileForm.passMainFormReference(this, platformList);
             }
-            /*else if(formToShow is landingPage landing)
-            {//if needed - add
-                landing
-            }*/
 
                 formToShow.TopLevel = false;
             panelPasswordForm.Controls.Add(formToShow);
@@ -135,41 +131,72 @@ namespace password_manager
 
         public void drawButtons()
         {
-            ComboBox emailList = new ComboBox();
-            emailList.Font = new Font(emailList.Font.FontFamily, 10);
-            emailList.Width = 225;
-            panelProfiles.Controls.Add(emailList);
-            emailList.Items.Add("Add new emal address");
-            emailList.SelectedIndex = 0;
             // add the buttons backwards, as to not fuck around with array reversal
+           // MessageBox.Show(buttonList.Count + "/" + platformList.Count);
+
             for (int i = buttonList.Count - 1; i >= 0; i--)
             {
-                buttonList[i].Location = new Point(0, 25 + (buttonList.Count - i - 1) * 94);
+                buttonList[i].Location = new Point(0, (buttonList.Count - i - 1) * 100);
                 panelProfiles.Controls.Add(buttonList[i]);
             }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            base.OnFormClosing(e);
+            formCleanup.clean(panelPasswordForm);
 
             string jsonString = JsonSerializer.Serialize(platformList, new JsonSerializerOptions { WriteIndented = true });
             //MessageBox.Show(jsonString); //i did this cause its cool to see
-
-            formCleanup.clean(panelPasswordForm);
             panelProfiles.Controls.Clear();
 
             File.WriteAllText("passwords.json", jsonString);
+
+            base.OnFormClosing(e);
         }
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Program made by Bogi\nIcons from flaticon.com, by Google\nPython, Selenium and Requests rights reserved by their owners");
+            MessageBox.Show("Program made by Bogi\nIcons from flaticon.com, by Google\nPython, Selenium and Requests rights reserved by their owners", "Password Manager");
         }
-        private void backupPasswordsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void backupPasswords(object sender, EventArgs e)
         {
-            MessageBox.Show("WIP");
-        }
+            string jsonString = JsonSerializer.Serialize(platformList, new JsonSerializerOptions { WriteIndented = true });
+            byte[] encryptedToWrite = backup.encryption("test", jsonString);
+            string backupData= Convert.ToBase64String(encryptedToWrite);
+            //MessageBox.Show(Convert.ToBase64String(encryptedToWrite));
 
+            File.WriteAllText($"C:/Users/{Environment.UserName}/Desktop/test.butler", backupData);
+            MessageBox.Show($"Backup file test.butler created on Desktop.");
+        }
+        private void readBackup(object s, EventArgs e)
+        {
+            OpenFileDialog backupFileDialog = new OpenFileDialog();
+            backupFileDialog.Filter = "Butler files (*.butler)|*.butler";
+
+            if(backupFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            string encryptedBase64 = File.ReadAllText(backupFileDialog.FileName);
+            byte[] encryptedBinary = Convert.FromBase64String(encryptedBase64);
+
+            string jsonTxt = backup.decryption("test", encryptedBinary);
+
+            //Reading from JSON test
+            if (jsonTxt != null)
+            {
+                platformList = JsonSerializer.Deserialize<List<platform>>(jsonTxt);
+
+                for (int i = 0; i < platformList.Count(); i++)
+                {
+                    buttonList.Add(buttonGenerator.generateAButton(platformList[i].platformName, this, platformList[i]));
+                }
+            }
+
+            drawButtons();
+            draw(platformList[platformList.Count - 1], "platform");
+
+            File.WriteAllText("passwords.json", jsonTxt);
+        }
     }
 }

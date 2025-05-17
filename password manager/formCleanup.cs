@@ -5,17 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.IO;
 
 namespace password_manager
 {
     internal class formCleanup
     {
+        public static platform platformRef = null;
         public static void clean(Panel formPanel)
         {
             Debug.WriteLine($"number of forms in panel: {formPanel.Controls.Count}");
             //formToClose initialized and fetches the first(and only) form shown in panelPasswordForm
             Form formToClose = formPanel.Controls.OfType<Form>().FirstOrDefault();
-            formPanel.Controls.Remove(formToClose);
 
             if (formToClose != null)
             {
@@ -45,6 +47,12 @@ namespace password_manager
                 }
                 formPanel.Controls.Clear();
             }
+
+            formPanel.Controls.Remove(formToClose);
+        }
+        public static void passPlatformRef(platform platform)
+        {
+            platformRef = platform;
         }
     }
 }

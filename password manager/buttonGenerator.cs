@@ -13,7 +13,7 @@ namespace password_manager
         {
             Button buttonga = new Button();
             buttonga.Width = 227;
-            buttonga.Height = 94;
+            buttonga.Height = 100;
             buttonga.Text = btnText;
 
             if(btnText != "Add a new profile")
