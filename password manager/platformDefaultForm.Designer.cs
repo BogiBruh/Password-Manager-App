@@ -205,7 +205,7 @@
         private System.Windows.Forms.PictureBox copyPassword;
         private System.Windows.Forms.PictureBox showHidePass;
         private System.Windows.Forms.Button generateBtn;
-        private System.Windows.Forms.Label platformName;
+        public System.Windows.Forms.Label platformName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button confirmBtn;
         private System.Windows.Forms.Button denyBtn;

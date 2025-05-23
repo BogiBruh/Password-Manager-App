@@ -180,6 +180,8 @@ namespace password_manager
                     break;
                 default: break;
             }
+
+            savePasswords.save(mainForm);
         }
 
         public void memCleanup()

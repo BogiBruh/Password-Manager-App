@@ -31,10 +31,13 @@
             this.panelPasswordForm = new System.Windows.Forms.Panel();
             this.panelProfiles = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupPasswordsToDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readPasswordBackupFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteCurrentPlatformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +61,7 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem1,
             this.optionsToolStripMenuItem,
             this.infoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -67,13 +71,6 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // infoToolStripMenuItem
-            // 
-            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.infoToolStripMenuItem.Text = "Info";
-            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
-            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -81,7 +78,7 @@
             this.readPasswordBackupFromFileToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
+            this.optionsToolStripMenuItem.Text = "Settings";
             // 
             // backupPasswordsToDesktopToolStripMenuItem
             // 
@@ -96,6 +93,36 @@
             this.readPasswordBackupFromFileToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.readPasswordBackupFromFileToolStripMenuItem.Text = "Read password backup from file";
             this.readPasswordBackupFromFileToolStripMenuItem.Click += new System.EventHandler(this.readBackup);
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.infoToolStripMenuItem.Text = "Info";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem1
+            // 
+            this.optionsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem,
+            this.deleteCurrentPlatformToolStripMenuItem});
+            this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
+            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem1.Text = "Options";
+            // 
+            // changeTheImageForTheCurrentPlatformToolStripMenuItem
+            // 
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Name = "changeTheImageForTheCurrentPlatformToolStripMenuItem";
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Text = "Change the image for the current platform";
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Click += new System.EventHandler(this.changePlatformImage);
+            // 
+            // deleteCurrentPlatformToolStripMenuItem
+            // 
+            this.deleteCurrentPlatformToolStripMenuItem.Name = "deleteCurrentPlatformToolStripMenuItem";
+            this.deleteCurrentPlatformToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.deleteCurrentPlatformToolStripMenuItem.Text = "Delete current platform";
+            this.deleteCurrentPlatformToolStripMenuItem.Click += new System.EventHandler(this.deleteCurrentPlatform);
             // 
             // mainForm
             // 
@@ -119,13 +146,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panelPasswordForm;
-        private System.Windows.Forms.Panel panelProfiles;
+        public System.Windows.Forms.Panel panelPasswordForm;
+        public System.Windows.Forms.Panel panelProfiles;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backupPasswordsToDesktopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem readPasswordBackupFromFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem changeTheImageForTheCurrentPlatformToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteCurrentPlatformToolStripMenuItem;
     }
 }
 

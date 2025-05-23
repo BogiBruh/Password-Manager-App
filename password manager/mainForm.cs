@@ -143,13 +143,9 @@ namespace password_manager
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            savePasswords.save(this);
             formCleanup.clean(panelPasswordForm);
-
-            string jsonString = JsonSerializer.Serialize(platformList, new JsonSerializerOptions { WriteIndented = true });
-            //MessageBox.Show(jsonString); //i did this cause its cool to see
             panelProfiles.Controls.Clear();
-
-            File.WriteAllText("passwords.json", jsonString);
 
             base.OnFormClosing(e);
         }
@@ -168,10 +164,11 @@ namespace password_manager
             File.WriteAllText($"C:/Users/{Environment.UserName}/Desktop/test.butler", backupData);
             MessageBox.Show($"Backup file test.butler created on Desktop.");
         }
-        private void readBackup(object s, EventArgs e)
+        private async void readBackup(object s, EventArgs e)
         {
             OpenFileDialog backupFileDialog = new OpenFileDialog();
             backupFileDialog.Filter = "Butler files (*.butler)|*.butler";
+            List<Task> scraping = new List<Task>();
 
             if(backupFileDialog.ShowDialog() != DialogResult.OK)
             {
@@ -193,10 +190,85 @@ namespace password_manager
                 }
             }
 
+            File.WriteAllText("passwords.json", jsonTxt);
+
+            //Asynchronously scrape logos for the thing
+
+            for(int i = 0; i < platformList.Count; i++)
+            {
+                scraping.Add(logoScraper.scrapeLogoAsync(platformList[i].platformName));
+            }
+
+            await Task.WhenAll(scraping);
+
+            //Draw every ui element
             drawButtons();
             draw(platformList[platformList.Count - 1], "platform");
+        }
 
-            File.WriteAllText("passwords.json", jsonTxt);
+        private void deleteCurrentPlatform(object s, EventArgs e)
+        {
+            platformDefaultForm platformForm = panelPasswordForm.Controls.OfType<platformDefaultForm>().FirstOrDefault();
+
+            string platformName = "";
+            if (platformForm == null) MessageBox.Show("Please select a platform before calling this function.");
+            else
+            {
+                platformName = platformForm.platformName.Text;
+
+                for(int i = 0; i < buttonList.Count; i++)
+                {
+                    if (buttonList[i].Text == platformName)
+                    {
+                        panelProfiles.Controls.Remove(buttonList[i]);
+                        buttonList.RemoveAt(i);
+                        break;
+                    }
+                }
+                for(int i = 0; i < platformList.Count; i++)
+                {
+                    if(platformList[i].platformName == platformName)
+                    {
+                        platformList.RemoveAt(i);
+                        break;
+                    }
+                }
+
+                panelProfiles.Controls.Clear();
+                drawButtons();
+                draw(platformList[platformList.Count - 1], "platform");
+            }
+        }
+
+        private void changePlatformImage(object s, EventArgs e)
+        {
+            platformDefaultForm platformForm = panelPasswordForm.Controls.OfType<platformDefaultForm>().FirstOrDefault();
+            string platformName = platformForm.platformName.Text;
+            string fileName = platformName + ".png";
+            OpenFileDialog imageFileDialog = new OpenFileDialog();
+            imageFileDialog.Filter = "PNG files (*.png)|*.png";
+
+            if(imageFileDialog.ShowDialog() != DialogResult.OK) //get the file to replace
+            {
+                return;
+            }
+
+            formCleanup.clean(panelPasswordForm); //cleans the panel to free image-to-be-changed from memory
+
+            if(File.Exists(Path.Combine(Application.StartupPath, "img", "logos", fileName))) //deletes image-to-be-changed
+            {
+                File.Delete(Path.Combine(Application.StartupPath, "img", "logos", fileName));
+            }
+
+            File.Move(imageFileDialog.FileName, Path.Combine(Application.StartupPath, "img", "logos", fileName)); //brings chosen image to its rightful place
+
+            for(int i = 0; i < platformList.Count; i++) //redraws correct platform
+            {
+                if(platformList[i].platformName == platformName)
+                {
+                    draw(platformList[i], "platform");
+                }
+            }
         }
     }
 }
