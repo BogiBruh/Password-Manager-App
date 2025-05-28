@@ -132,8 +132,9 @@ namespace password_manager
         public void drawButtons()
         {
             // add the buttons backwards, as to not fuck around with array reversal
-           // MessageBox.Show(buttonList.Count + "/" + platformList.Count);
-
+            // MessageBox.Show(buttonList.Count + "/" + platformList.Count);
+            //TODO: make it empty out the button list, so we dont have multiple of the same buttons sometimes.
+            panelProfiles.AutoScrollPosition = new Point(0, 0); //sets the pointer back at the top
             for (int i = buttonList.Count - 1; i >= 0; i--)
             {
                 buttonList[i].Location = new Point(0, (buttonList.Count - i - 1) * 100);
@@ -157,27 +158,44 @@ namespace password_manager
         private void backupPasswords(object sender, EventArgs e)
         {
             string jsonString = JsonSerializer.Serialize(platformList, new JsonSerializerOptions { WriteIndented = true });
-            byte[] encryptedToWrite = backup.encryption("test", jsonString);
-            string backupData= Convert.ToBase64String(encryptedToWrite);
-            //MessageBox.Show(Convert.ToBase64String(encryptedToWrite));
+            encryptionInputForm inputForm = new encryptionInputForm();
+            DateTimeOffset currDate = DateTimeOffset.Now;
+            string filename = "password backup-" + currDate.ToString("yyyy-MM-dd_HH-mm");
+            inputForm.encryptOrDecrypt("encrypt", jsonString);
 
-            File.WriteAllText($"C:/Users/{Environment.UserName}/Desktop/test.butler", backupData);
-            MessageBox.Show($"Backup file test.butler created on Desktop.");
+            if(inputForm.ShowDialog() == DialogResult.OK)
+            {
+                string backupData = Convert.ToBase64String(inputForm.getEncryptedData());
+
+                File.WriteAllText($"C:/Users/{Environment.UserName}/Desktop/{filename}.butler", backupData);
+                MessageBox.Show($"Backup file {filename}.butler created on Desktop.");
+                inputForm.Dispose();
+            }
         }
         private async void readBackup(object s, EventArgs e)
         {
             OpenFileDialog backupFileDialog = new OpenFileDialog();
             backupFileDialog.Filter = "Butler files (*.butler)|*.butler";
             List<Task> scraping = new List<Task>();
+            progressBarForm progress = new progressBarForm(); //progress bar form
+            object taskObject = new object(); //this is to ensure no race conditions
+            int completedScrapes = 1;
+            encryptionInputForm decryptForm = new encryptionInputForm();
+            decryptForm.encryptOrDecrypt("decrypt", null);
 
             if(backupFileDialog.ShowDialog() != DialogResult.OK)
-            {
+            { //failsafe to clicking x on dialogue
                 return;
             }
             string encryptedBase64 = File.ReadAllText(backupFileDialog.FileName);
             byte[] encryptedBinary = Convert.FromBase64String(encryptedBase64);
 
-            string jsonTxt = backup.decryption("test", encryptedBinary);
+            if(decryptForm.ShowDialog() != DialogResult.OK)
+            { //failsafe to clicking x on dialogue
+                MessageBox.Show("This shit dont work");
+                return;
+            }
+            string jsonTxt = backup.decryption(decryptForm.getDecryptionKeyStr(), encryptedBinary);
 
             //Reading from JSON test
             if (jsonTxt != null)
@@ -192,16 +210,36 @@ namespace password_manager
 
             File.WriteAllText("passwords.json", jsonTxt);
 
+            progress.getTaskCount(platformList.Count + 1);
+            progress.Show();
             //Asynchronously scrape logos for the thing
-
             for(int i = 0; i < platformList.Count; i++)
             {
-                scraping.Add(logoScraper.scrapeLogoAsync(platformList[i].platformName));
+                string platformName = platformList[i].platformName;
+                var task = logoScraper.scrapeLogoAsync(platformList[i].platformName) //creates a scraping task
+                    .ContinueWith(thisTask => //goddamn is this async stuff complex
+                    {
+                        Invoke(new Action(() => { //updates the label
+                            progress.statusLabel.Text = $"Finding {platformName}'s logo...";
+                        }));
+
+                        lock (taskObject)
+                        {
+                            completedScrapes++;
+                            Invoke(new Action(() =>
+                            progress.progressBar1.Value = completedScrapes));
+                        }
+                        
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                scraping.Add(task); //adds task to the list
             }
 
-            await Task.WhenAll(scraping);
+            progress.progressBar1.Value = 1;
+            await Task.WhenAll(scraping); //runs the scrapes
 
+            progress.Close();
             //Draw every ui element
+            panelProfiles.Controls.Clear();
             drawButtons();
             draw(platformList[platformList.Count - 1], "platform");
         }

@@ -98,28 +98,41 @@ namespace password_manager
             Buffer.BlockCopy(encryptedData, 16, iv, 0, 16);
             Buffer.BlockCopy(encryptedData, 32, decryptPls, 0, decryptPls.Length);
 
-            var key = new Rfc2898DeriveBytes(userBackupString, salt, runs, HashAlgorithmName.SHA256).GetBytes(32);
-
-
-            using (var aesEncryption = Aes.Create())
+            try
             {
-                aesEncryption.Key = key;
-                aesEncryption.IV = iv;
+                var key = new Rfc2898DeriveBytes(userBackupString, salt, runs, HashAlgorithmName.SHA256).GetBytes(32);
 
 
-                using (var memStream = new MemoryStream(decryptPls))
+                using (var aesEncryption = Aes.Create())
                 {
-                    using (var decryptor = aesEncryption.CreateDecryptor())
+                    aesEncryption.Key = key;
+                    aesEncryption.IV = iv;
+
+
+                    using (var memStream = new MemoryStream(decryptPls))
                     {
-                        using (var cryptoStrim = new CryptoStream(memStream, decryptor, CryptoStreamMode.Read))
+                        using (var decryptor = aesEncryption.CreateDecryptor())
                         {
-                            using (var strimReader = new StreamReader(cryptoStrim))
+                            using (var cryptoStrim = new CryptoStream(memStream, decryptor, CryptoStreamMode.Read))
                             {
-                                return strimReader.ReadToEnd();
+                                using (var strimReader = new StreamReader(cryptoStrim))
+                                {
+                                    return strimReader.ReadToEnd();
+                                }
                             }
                         }
                     }
                 }
+            }
+            catch(CryptographicException exception)
+            {
+                MessageBox.Show($"Theres been an error reading from your backup file. Did you write the correct phrase?\n{exception}");
+                return "Oops!1";
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show($"Error: {exception}");
+                return "Oops!2";
             }
         }
     }

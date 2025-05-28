@@ -32,9 +32,9 @@ namespace password_manager
             platformName.Text = platform.platformName;
             additionalDataTxtBox.Text = platform.additionalData;
 
-            if (File.Exists(Path.Combine(Application.StartupPath, "img", "logos", platform.platformName + ".png")))
+            if (File.Exists(Path.Combine(Application.StartupPath, "img", "logos", platform.platformName.ToLower() + ".png")))
             {
-                logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "logos", platform.platformName + ".png"));
+                logoBox.Image = Image.FromFile(Path.Combine(Application.StartupPath, "img", "logos", platform.platformName.ToLower() + ".png"));
             }
             else
             {
