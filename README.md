@@ -13,7 +13,7 @@ You won't be able to jumble up your passwords, as this app finds the logo of the
 
 </br>And if you're in the situation of getting a new computer transferring passwords is as easy as 1, 2, 3! Simply click backup passwords, enter a phrase you can't forget, and let your computer do all the work.
 </br>For reading from your backup passwords, the steps are in reverse!
-</br><h6>If you forget your phrase legally you are to blame. This program does NOT store anything on servers, it's all local storage. For any damages, lost passwords, injuries, swellings, bleeds, rashes and deaths (either yours or of your family members), I do not have any legal or moral responsibility. However, feel free to email me at [your email here]@[your email domain]</h6>
+</br><h6>If you forget your phrase legally you are to blame. This program does NOT store anything on servers, it's all local storage. For any damages, lost passwords, injuries, swellings, bleeds, rashes and deaths (either yours or of your family members), I do not have any legal or moral responsibility. However, feel free to email me at [your email here]@[your email domain here]</h6>
 
 # Credits
-This project uses icons from flaticons,</br>python packages Selenium and requests,</br>and hopefully not much more!
+This project uses icons from flaticons,</br>python packages Selenium and requests,</br>logos from Clearbit,</br>and hopefully not much more!
