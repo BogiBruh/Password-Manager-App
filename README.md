@@ -7,12 +7,13 @@ This C# WinForms project I'm writing to see if I'm able to create a functional a
 With this application you can:
 <li>generate and store secure passwords with a state of the art (basic) randomly generated string of characters,</li>
 <li>create a profile for each platform/app/website you're storing the password of,</li>
-<li>do all that with multiple emails(still not possible) and,</li>
+<li>do all that with multiple emails and,</li>
 <li>...not much else, really.</li>
-You won't be able to jumble up your passwords, as this app finds the logo of the target platform/app/website with a staggering 60% accuracy!! And it shows it just above your password.
+You won't be able to jumble up your passwords, as this app finds the logo of the target platform/app/website with a staggering 70% accuracy!! And it shows it just above your password.
 
-</br>And if you're in the situation of getting a new computer transferring passwords is <s>not yet possible, at all</s> as easy as 1, 2, 3! The steps are simple:
-<li></li>
+</br>And if you're in the situation of getting a new computer transferring passwords is as easy as 1, 2, 3! Simply click backup passwords, enter a phrase you can't forget, and let your computer do all the work.
+</br>For reading from your backup passwords, the steps are in reverse!
+</br><h6>If you forget your phrase legally you are to blame. This program does NOT store anything on servers, it's all local storage. For any damages, lost passwords, injuries, swellings, bleeds, rashes and deaths (either yours or of your family members), I do not have any legal or moral responsibility. However, feel free to email me at [your email here]@[your email domain]</h6>
 
 # Credits
 This project uses icons from flaticons,</br>python packages Selenium and requests,</br>and hopefully not much more!
