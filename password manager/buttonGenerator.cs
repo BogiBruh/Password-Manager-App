@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace password_manager
 {
@@ -11,11 +12,13 @@ namespace password_manager
     {
         public static Button generateAButton(string btnText, mainForm formWindow, platform Platform)
         {
-            Button buttonga = new Button();
-            buttonga.Width = 232;
-            buttonga.Height = 100;
-            buttonga.Text = btnText;
-
+            Font btnFont = new Font("Sans serif", 10);
+            Button buttonga = new Button {
+                Width = 227,
+                Height = 100,
+                Text = btnText,
+                Font = btnFont
+            };
             if(btnText != "Add a new profile")
             {
                 buttonga.Click += (sender, e) => formWindow.draw(Platform, "platform");

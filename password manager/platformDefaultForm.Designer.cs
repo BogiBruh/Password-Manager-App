@@ -39,6 +39,8 @@
             this.confirmBtn = new System.Windows.Forms.Button();
             this.denyBtn = new System.Windows.Forms.Button();
             this.timerGnerate = new System.Windows.Forms.Timer(this.components);
+            this.additionalLabel = new System.Windows.Forms.Label();
+            this.additionalDataTxtBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.copyPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.showHidePass)).BeginInit();
@@ -46,6 +48,7 @@
             // 
             // logoBox
             // 
+            this.logoBox.InitialImage = null;
             this.logoBox.Location = new System.Drawing.Point(133, 38);
             this.logoBox.Name = "logoBox";
             this.logoBox.Size = new System.Drawing.Size(75, 75);
@@ -146,12 +149,34 @@
             this.timerGnerate.Interval = 5000;
             this.timerGnerate.Tick += new System.EventHandler(this.timerGnerate_Tick);
             // 
+            // additionalLabel
+            // 
+            this.additionalLabel.AutoSize = true;
+            this.additionalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.additionalLabel.Location = new System.Drawing.Point(72, 399);
+            this.additionalLabel.Name = "additionalLabel";
+            this.additionalLabel.Size = new System.Drawing.Size(386, 40);
+            this.additionalLabel.TabIndex = 9;
+            this.additionalLabel.Text = "Additional data for the account(email, username, etc.)\r\n\r\n";
+            // 
+            // additionalDataTxtBox
+            // 
+            this.additionalDataTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.additionalDataTxtBox.Location = new System.Drawing.Point(76, 423);
+            this.additionalDataTxtBox.Multiline = true;
+            this.additionalDataTxtBox.Name = "additionalDataTxtBox";
+            this.additionalDataTxtBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.additionalDataTxtBox.Size = new System.Drawing.Size(382, 80);
+            this.additionalDataTxtBox.TabIndex = 10;
+            // 
             // platformDefaultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(712, 540);
+            this.ClientSize = new System.Drawing.Size(700, 561);
+            this.Controls.Add(this.additionalDataTxtBox);
+            this.Controls.Add(this.additionalLabel);
             this.Controls.Add(this.denyBtn);
             this.Controls.Add(this.confirmBtn);
             this.Controls.Add(this.label1);
@@ -180,10 +205,12 @@
         private System.Windows.Forms.PictureBox copyPassword;
         private System.Windows.Forms.PictureBox showHidePass;
         private System.Windows.Forms.Button generateBtn;
-        private System.Windows.Forms.Label platformName;
+        public System.Windows.Forms.Label platformName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button confirmBtn;
         private System.Windows.Forms.Button denyBtn;
         private System.Windows.Forms.Timer timerGnerate;
+        private System.Windows.Forms.Label additionalLabel;
+        private System.Windows.Forms.TextBox additionalDataTxtBox;
     }
 }
