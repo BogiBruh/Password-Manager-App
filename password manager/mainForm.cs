@@ -274,7 +274,8 @@ namespace password_manager
 
                 panelProfiles.Controls.Clear();
                 drawButtons();
-                draw(platformList[platformList.Count - 1], "platform");
+                if (platformList.Count != 0) draw(platformList[platformList.Count - 1], "platform");
+                else draw(null, "landing");
             }
         }
 
