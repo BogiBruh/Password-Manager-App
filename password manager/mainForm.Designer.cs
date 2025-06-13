@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.panelPasswordForm = new System.Windows.Forms.Panel();
             this.panelProfiles = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.optionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteCurrentPlatformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupPasswordsToDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readPasswordBackupFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeTheImageForTheCurrentPlatformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteCurrentPlatformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +72,29 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // optionsToolStripMenuItem1
+            // 
+            this.optionsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem,
+            this.deleteCurrentPlatformToolStripMenuItem});
+            this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
+            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem1.Text = "Options";
+            // 
+            // changeTheImageForTheCurrentPlatformToolStripMenuItem
+            // 
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Name = "changeTheImageForTheCurrentPlatformToolStripMenuItem";
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Text = "Change the image for the current platform";
+            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Click += new System.EventHandler(this.changePlatformImage);
+            // 
+            // deleteCurrentPlatformToolStripMenuItem
+            // 
+            this.deleteCurrentPlatformToolStripMenuItem.Name = "deleteCurrentPlatformToolStripMenuItem";
+            this.deleteCurrentPlatformToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.deleteCurrentPlatformToolStripMenuItem.Text = "Delete current platform";
+            this.deleteCurrentPlatformToolStripMenuItem.Click += new System.EventHandler(this.deleteCurrentPlatform);
+            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -101,29 +125,6 @@
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
-            // optionsToolStripMenuItem1
-            // 
-            this.optionsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeTheImageForTheCurrentPlatformToolStripMenuItem,
-            this.deleteCurrentPlatformToolStripMenuItem});
-            this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
-            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem1.Text = "Options";
-            // 
-            // changeTheImageForTheCurrentPlatformToolStripMenuItem
-            // 
-            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Name = "changeTheImageForTheCurrentPlatformToolStripMenuItem";
-            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
-            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Text = "Change the image for the current platform";
-            this.changeTheImageForTheCurrentPlatformToolStripMenuItem.Click += new System.EventHandler(this.changePlatformImage);
-            // 
-            // deleteCurrentPlatformToolStripMenuItem
-            // 
-            this.deleteCurrentPlatformToolStripMenuItem.Name = "deleteCurrentPlatformToolStripMenuItem";
-            this.deleteCurrentPlatformToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
-            this.deleteCurrentPlatformToolStripMenuItem.Text = "Delete current platform";
-            this.deleteCurrentPlatformToolStripMenuItem.Click += new System.EventHandler(this.deleteCurrentPlatform);
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,9 +134,10 @@
             this.Controls.Add(this.panelProfiles);
             this.Controls.Add(this.panelPasswordForm);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "mainForm";
-            this.Text = "Form1";
+            this.Text = "Password Butler";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

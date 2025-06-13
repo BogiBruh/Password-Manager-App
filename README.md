@@ -1,4 +1,4 @@
-# Password Manager App (name subject to change)
+# Password Butler
 This C# WinForms project I'm writing to see if I'm able to create a functional and full fledged (small scope) application.
 </br>It's like Dashlane™ but worse, with local storage, and frankly not worth a cent.
 

@@ -24,7 +24,7 @@ namespace password_manager
             {
                 FileName = "python", 
                 //Arguments = $"\"C:\\Users\\Intel\\source\\repos\\password manager\\password manager\\python scraper\\scraper.py\" \"{inputString}\"", // pass inputString as an arg
-                Arguments = $"\"{filePath.getRootPath()}\\python scraper\\scraper.py\" \"{inputString}\"",
+                Arguments = $"\"{AppDomain.CurrentDomain.BaseDirectory}\\python scraper\\scraper.py\" \"{inputString}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -54,7 +54,7 @@ namespace password_manager
                 {
                     FileName = "python",
                     //Arguments = $"\"C:\\Users\\Intel\\source\\repos\\password manager\\password manager\\python scraper\\scraper.py\" \"{inputString}\"", // pass inputString as an arg
-                    Arguments = $"\"{filePath.getRootPath()}\\python scraper\\scraper.py\" \"{inputString}\"",
+                    Arguments = $"\"{AppDomain.CurrentDomain.BaseDirectory}\\python scraper\\scraper.py\" \"{inputString}\"",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
