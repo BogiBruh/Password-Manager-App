@@ -135,6 +135,8 @@ namespace password_manager
             // MessageBox.Show(buttonList.Count + "/" + platformList.Count);
             //TODO: make it empty out the button list, so we dont have multiple of the same buttons sometimes.
             panelProfiles.AutoScrollPosition = new Point(0, 0); //sets the pointer back at the top
+            
+            
             for (int i = buttonList.Count - 1; i >= 0; i--)
             {
                 buttonList[i].Location = new Point(0, (buttonList.Count - i - 1) * 100);
@@ -153,7 +155,10 @@ namespace password_manager
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Program made by Bogi\nIcons from flaticon.com, by Google\nPython, Selenium and Requests rights reserved by their owners", "Password Manager");
+            MessageBox.Show("Program made by Bogi\n" +
+                "Icons from flaticon.com, by Google\n" +
+                "Platform logos scraped using Clearbits API\n" + 
+                "Python, Selenium and Requests rights reserved by their owners", "Password Manager");
         }
         private void backupPasswords(object sender, EventArgs e)
         {
@@ -174,8 +179,10 @@ namespace password_manager
         }
         private async void readBackup(object s, EventArgs e)
         {
-            OpenFileDialog backupFileDialog = new OpenFileDialog();
-            backupFileDialog.Filter = "Butler files (*.butler)|*.butler";
+            OpenFileDialog backupFileDialog = new OpenFileDialog
+            {
+                Filter = "Butler files (*.butler)|*.butler"
+            };
             List<Task> scraping = new List<Task>();
             progressBarForm progress = new progressBarForm(); //progress bar form
             object taskObject = new object(); //this is to ensure no race conditions
@@ -282,12 +289,19 @@ namespace password_manager
         private void changePlatformImage(object s, EventArgs e)
         {
             platformDefaultForm platformForm = panelPasswordForm.Controls.OfType<platformDefaultForm>().FirstOrDefault();
+            if (platformForm == null)
+            {
+                MessageBox.Show("Please select a platform before calling this function.");
+                return;
+            }
             string platformName = platformForm.platformName.Text;
             string fileName = platformName + ".png";
-            OpenFileDialog imageFileDialog = new OpenFileDialog();
-            imageFileDialog.Filter = "PNG files (*.png)|*.png";
+            OpenFileDialog imageFileDialog = new OpenFileDialog
+            {
+                Filter = "PNG files (*.png)|*.png"
+            };
 
-            if(imageFileDialog.ShowDialog() != DialogResult.OK) //get the file to replace
+            if (imageFileDialog.ShowDialog() != DialogResult.OK) //get the file to replace
             {
                 return;
             }
